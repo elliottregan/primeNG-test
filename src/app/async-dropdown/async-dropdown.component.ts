@@ -46,7 +46,7 @@ export class AsyncDropdownComponent implements OnDestroy {
       .pipe(debounceTime(100), distinctUntilChanged())
       .subscribe(async filterQuery => {
         this.groupedOptions[1].items = 
-          filterQuery === '' ? this.selectedPokemon :
+          filterQuery === '' ? this.selectedPokemon.filter(p => !this.groupedOptions[0].items.includes(p)) :
           // The selected items must be merged into the search results
           // Otherwise, p-dropdown will not be able to render the selected items.
           [...await this.HttpService.fetchPokemon_details(filterQuery), ...this.selectedPokemon]

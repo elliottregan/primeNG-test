@@ -14,10 +14,10 @@
     (onPanelShow)="observeFilterchanges()"
     (onPanelHide)="unObserveFilterchanges()"
 >
-    <ng-template let-pokemon pTemplate="item">
+    <ng-template let-p pTemplate="item">
         <div class="pokemon-item">
-            <img class="pokemon-item__image" [src]="pokemon.image" [alt]="pokemon.name" />
-            <div>{{pokemon.name}}</div>
+            <img class="pokemon-item__image" [src]="p.image" [alt]="p.name" />
+            <div>{{p.name}}</div>
         </div>
     </ng-template>
 
@@ -35,8 +35,12 @@
     </ng-template> -->
 </p-multiSelect>
 
-<ul>
-    <li *ngFor="let p of selectedPokemon">
-        {{p.name}}
-    </li>
-</ul>
+<section *ngIf="selectedPokemon.length">
+    <h3>Selected Items</h3>
+    <ul>
+        <li *ngFor="let p of selectedPokemon" class="pokemon-item">
+            <img class="pokemon-item__image" [src]="p.image" [alt]="p.name" />
+            <div>{{p.name}}</div>
+        </li>
+    </ul>
+</section>

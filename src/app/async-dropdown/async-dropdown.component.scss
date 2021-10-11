@@ -4,6 +4,13 @@
     max-width: 100%;
 }
 
+:host {
+    ul {
+        padding: 0;
+        margin: 0;
+    }
+}
+
 .pokemon-item {
     display: flex;
     vertical-align: middle;
