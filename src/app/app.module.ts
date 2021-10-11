@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { HttpService } from './services/http.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AsyncDropdownComponent } from './async-dropdown/async-dropdown.component';
@@ -20,7 +21,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     MultiSelectModule,
   ],
-  providers: [],
+  providers: [
+    HttpService,
+  ],
   bootstrap: [ AppComponent ],
 })
 export class AppModule { }

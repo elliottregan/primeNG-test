@@ -1,1 +1,42 @@
-<p-multiSelect [options]="cities" [(ngModel)]="selectedCities" optionLabel="name"></p-multiSelect>
+<p-multiSelect
+    class="input"
+    defaultLabel="Choose Your Pokemon"
+    display="chip"
+    optionLabel="name"
+    filterBy="name"
+    dataKey="id"
+    [group]="true"
+    [resetFilterOnHide]="true"
+    [options]="groupedOptions"
+    [(ngModel)]="selectedPokemon"
+    [filterValue]="filterValue"
+    (onFilter)="onFilter($event)"
+    (onPanelShow)="observeFilterchanges()"
+    (onPanelHide)="unObserveFilterchanges()"
+>
+    <ng-template let-pokemon pTemplate="item">
+        <div class="pokemon-item">
+            <img class="pokemon-item__image" [src]="pokemon.image" [alt]="pokemon.name" />
+            <div>{{pokemon.name}}</div>
+        </div>
+    </ng-template>
+
+<!-- 
+    <ng-template let-value pTemplate="selectedItems">
+        <div class="" [style]="{display: 'flex'}">
+            <div class="pokemon-item" *ngFor="let pokemon of selectedPokemon" >
+                <img class="pokemon-item__image" [src]="pokemon.image" [alt]="pokemon.name" />
+                <div>{{pokemon.name}}</div>
+            </div>
+        </div>
+        <div *ngIf="!selectedPokemon || selectedPokemon.length === 0" class="country-placeholder">
+            Choose Your Pokemon
+        </div>
+    </ng-template> -->
+</p-multiSelect>
+
+<ul>
+    <li *ngFor="let p of selectedPokemon">
+        {{p.name}}
+    </li>
+</ul>

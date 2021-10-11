@@ -1,0 +1,17 @@
+:host ::ng-deep .p-multiselect {
+    min-width: 15rem;
+    width: 20rem;
+    max-width: 100%;
+}
+
+.pokemon-item {
+    display: flex;
+    vertical-align: middle;
+    align-items: center;
+
+    &__image {
+        width: 3em;
+        height: 3em;
+        margin-right: 0.5em;
+    }
+}
