@@ -43,13 +43,23 @@ export class AsyncDropdownComponent implements OnDestroy {
   public async observeFilterchanges(): Promise<void> {
     this.filterTextChanged = new Subject<string>();
     this.filterTextChanged
-      .pipe(debounceTime(100), distinctUntilChanged())
+      // TODO: If this debounce is shorter than the request,
+      // a race condition causes the filterValue to change to the last request,
+      // which may be different from the last filterValue the user typed in.
+      // I think there's a better way to do this with switchMap.
+      // https://www.freakyjolly.com/ng-select-typeahead-with-debouncetime-fetch-server-response/
+      .pipe(debounceTime(300), distinctUntilChanged())
       .subscribe(async filterQuery => {
-        this.groupedOptions[1].items = 
-          filterQuery === '' ? this.selectedPokemon.filter(p => !this.groupedOptions[0].items.includes(p)) :
+        if (filterQuery === '') {
+          this.groupedOptions[1].items = this.selectedPokemon.filter(p => !this.groupedOptions[0].items.find(r => r.id === p.id))
+        } else {
           // The selected items must be merged into the search results
           // Otherwise, p-dropdown will not be able to render the selected items.
-          [...await this.HttpService.fetchPokemon_details(filterQuery), ...this.selectedPokemon]
+          const results = await this.HttpService.fetchPokemon_details(filterQuery);
+          // Merge the results with the selected items, but exclude the selected items that are already in the search results
+          // Otherwise, you end up with duplicates.
+          this.groupedOptions[1].items = [...results, ...this.selectedPokemon.filter(p =>!results.find(r => r.id === p.id))]
+        }
         // Next line is required to force p-dropdown to update
         this.filterValue = filterQuery;
       });
