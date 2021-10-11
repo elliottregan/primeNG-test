@@ -43,7 +43,7 @@ export class AsyncDropdownComponent implements OnDestroy {
   public async observeFilterchanges(): Promise<void> {
     this.filterTextChanged = new Subject<string>();
     this.filterTextChanged
-      .pipe(debounceTime(300), distinctUntilChanged())
+      .pipe(debounceTime(100), distinctUntilChanged())
       .subscribe(async filterQuery => {
         this.groupedOptions[1].items = 
           filterQuery === '' ? this.selectedPokemon :
