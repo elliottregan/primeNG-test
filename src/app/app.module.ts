@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpService } from './services/http.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AsyncDropdownComponent } from './async-dropdown/async-dropdown.component';
+import { AsyncDropdownComponent } from './components/async-dropdown/async-dropdown.component';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';

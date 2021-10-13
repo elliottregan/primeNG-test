@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { HttpService, Pokemon } from '../services/http.service';
+import { HttpService, Pokemon } from '../../services/http.service';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
@@ -58,7 +58,7 @@ export class AsyncDropdownComponent implements OnDestroy {
           const results = await this.HttpService.fetchPokemon_details(filterQuery);
           // Merge the results with the selected items, but exclude the selected items that are already in the search results
           // Otherwise, you end up with duplicates.
-          this.groupedOptions[1].items = [...results, ...this.selectedPokemon.filter(p =>!results.find(r => r.id === p.id))]
+          this.groupedOptions[1].items = [...results, ...this.selectedPokemon.filter(p =>!results.find((r:Pokemon) => r.id === p.id))]
         }
         // Next line is required to force p-dropdown to update
         this.filterValue = filterQuery;
