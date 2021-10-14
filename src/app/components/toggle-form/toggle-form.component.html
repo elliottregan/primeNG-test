@@ -1,6 +1,7 @@
+<!-- <pre>{{ shareSettings.value | json }}</pre> -->
 
 <p-card class="p-fluid">
-    <form [formGroup]="shareSettings">
+    <form (submit)="savePermissions(shareSettings.value)" [formGroup]="shareSettings">
         <h3 class="mt-0">Share Settings</h3>
 
         <div class="p-field">
@@ -26,8 +27,8 @@
                 fieldLabel="Share With People"
                 [initialGroupFetch]="fetchFavorites"
                 [secondGroupFetch]="fetchPeople"
-                (selectedOptions)="addBulbUser($event)"
-                class=""
+                (selectedOptions)="updateBulbUsers($event)"
+                class="block my-5"
             ></app-async-dropdown>
 
             <app-async-dropdown
@@ -39,7 +40,8 @@
                 class="block my-5"
             ></app-async-dropdown>
 
-            <p-button 
+            <p-button
+                type="submit"
                 label="Apply Share Settings"
                 icon="pi pi-check"
                 class="my-5"
@@ -48,7 +50,6 @@
 
     </form>
 </p-card>
-<pre>{{ shareSettings.value | json }}</pre>
 
 <br>
 <br>
