@@ -1,9 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { HttpService, Pokemon } from '../../services/http.service';
+import { Component, OnDestroy, EventEmitter, Input, Output } from '@angular/core';
+import { Pokemon } from '../../services/http.service';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
-interface GroupOptions {
+interface OptionGroup {
   label: string,
   items: Pokemon[]
 }
@@ -15,13 +15,25 @@ interface GroupOptions {
 })
 export class AsyncDropdownComponent implements OnDestroy {
 
-  public selectedPokemon: Pokemon[] = [];
+	@Input() initialGroupFetch!: (arg0: number[]) => Promise<any[]>;
+
+	@Input() secondGroupFetch!: (arg0: string) => Promise<any[]>;
+
+  @Input() fieldId!: string;
+
+  @Input() fieldLabel: string = 'Choose Your Pokemon';
+
+  @Input() defaultLabel: string = 'Choose Your Pokemon';
+
+	@Output() selectedOptions: EventEmitter<any[]> = new EventEmitter<any[]>();
+
+  public selectedPokemon:Pokemon[] = [];
 
   public filterValue:string = '';
 
   private filterTextChanged!: Subject<string>;
 
-  public groupedOptions:GroupOptions[] = [
+  public groupedOptions:OptionGroup[] = [
     {
       label: 'Party',
       items: [],
@@ -32,7 +44,7 @@ export class AsyncDropdownComponent implements OnDestroy {
     }
   ]
 
-  constructor(private HttpService: HttpService) {}
+  constructor() {}
 
   public onFilter({ filter }: any): void {
     // Try filtering only a sub-section ---- this isn't possible out of the box, but we can make it work.
@@ -55,7 +67,7 @@ export class AsyncDropdownComponent implements OnDestroy {
         } else {
           // The selected items must be merged into the search results
           // Otherwise, p-dropdown will not be able to render the selected items.
-          const results = await this.HttpService.fetchPokemon_details(filterQuery);
+          const results = await this.secondGroupFetch(filterQuery);
           // Merge the results with the selected items, but exclude the selected items that are already in the search results
           // Otherwise, you end up with duplicates.
           this.groupedOptions[1].items = [...results, ...this.selectedPokemon.filter(p =>!results.find((r:Pokemon) => r.id === p.id))]
@@ -66,13 +78,13 @@ export class AsyncDropdownComponent implements OnDestroy {
 
     if (!this.groupedOptions[0].items.length) {
       this.filterValue = ' ';
-      this.groupedOptions[0].items = await this.HttpService.fetchParty([1, 10, 16, 25]);
+      this.groupedOptions[0].items = await this.initialGroupFetch([1, 10, 16, 25]);
       this.filterValue = '';
     }
   }
 
   public unObserveFilterchanges(): void {
-    this.filterTextChanged.next('');
+    this.filterTextChanged?.next('');
     this.filterTextChanged?.unsubscribe();
   }
 

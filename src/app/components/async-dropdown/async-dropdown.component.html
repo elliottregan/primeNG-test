@@ -1,41 +1,48 @@
-<p-multiSelect
-    class="input"
-    defaultLabel="Choose Your Pokemon"
-    display="chip"
-    optionLabel="name"
-    filterBy="name"
-    dataKey="id"
-    [group]="true"
-    [resetFilterOnHide]="true"
-    [options]="groupedOptions"
-    [(ngModel)]="selectedPokemon"
-    [filterValue]="filterValue"
-    (onFilter)="onFilter($event)"
-    (onPanelShow)="observeFilterchanges()"
-    (onPanelHide)="unObserveFilterchanges()"
->
-    <ng-template let-p pTemplate="item">
-        <div class="pokemon-item">
-            <img class="pokemon-item__image" [src]="p.image" [alt]="p.name" />
-            <div>{{p.name}}</div>
-        </div>
-    </ng-template>
+<div class="p-field">
 
-<!-- 
-    <ng-template let-value pTemplate="selectedItems">
-        <div class="" [style]="{display: 'flex'}">
-            <div class="pokemon-item" *ngFor="let pokemon of selectedPokemon" >
-                <img class="pokemon-item__image" [src]="pokemon.image" [alt]="pokemon.name" />
-                <div>{{pokemon.name}}</div>
+    <label class="p-label" [for]="fieldId">Share With People</label>
+
+    <p-multiSelect
+        [id]="fieldId"
+        class="input"
+        [defaultLabel]="defaultLabel"
+        display="chip"
+        optionLabel="name"
+        filterBy="name"
+        dataKey="id"
+        [group]="true"
+        [resetFilterOnHide]="true"
+        [options]="groupedOptions"
+        [(ngModel)]="selectedPokemon"
+        [filterValue]="filterValue"
+        (onChange)="selectedOptions.emit($event.value)"
+        (onFilter)="onFilter($event)"
+        (onPanelShow)="observeFilterchanges()"
+        (onPanelHide)="unObserveFilterchanges()"
+    >
+        <ng-template let-p pTemplate="item">
+            <div class="pokemon-item">
+                <img class="pokemon-item__image" [src]="p.image" [alt]="p.name" />
+                <div>{{p.name}}</div>
             </div>
-        </div>
-        <div *ngIf="!selectedPokemon || selectedPokemon.length === 0" class="country-placeholder">
-            Choose Your Pokemon
-        </div>
-    </ng-template> -->
-</p-multiSelect>
+        </ng-template>
 
-<section *ngIf="selectedPokemon.length">
+    <!-- 
+        <ng-template let-value pTemplate="selectedItems">
+            <div class="" [style]="{display: 'flex'}">
+                <div class="pokemon-item" *ngFor="let pokemon of selectedPokemon" >
+                    <img class="pokemon-item__image" [src]="pokemon.image" [alt]="pokemon.name" />
+                    <div>{{pokemon.name}}</div>
+                </div>
+            </div>
+            <div *ngIf="!selectedPokemon || selectedPokemon.length === 0" class="country-placeholder">
+                Choose Your Pokemon
+            </div>
+        </ng-template> -->
+    </p-multiSelect>
+</div>
+
+<!-- <section *ngIf="selectedPokemon.length">
     <h3>Selected Items</h3>
     <ul>
         <li *ngFor="let p of selectedPokemon" class="pokemon-item">
@@ -43,4 +50,4 @@
             <div>{{p.name}}</div>
         </li>
     </ul>
-</section>
+</section> -->

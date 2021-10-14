@@ -1,0 +1,57 @@
+
+<p-card class="p-fluid">
+    <form [formGroup]="shareSettings">
+        <h3 class="mt-0">Share Settings</h3>
+
+        <div class="p-field">
+            <p-selectButton 
+                [options]="privacyOptions"
+                formControlName="privacyLevel"
+                optionLabel="name"
+                optionValue="code"
+                class="block"
+            >
+                <ng-template let-option>
+                    
+                    <span class="p-button-label">
+                        <i [class]="'p-button-icon ' + option.icon"></i>
+                        {{ option.name }}
+                    </span>
+                </ng-template>
+            </p-selectButton>
+        </div>
+        <section class="mt-5" *ngIf="shareSettings.get('privacyLevel')?.value !== 'PRIVATE'">
+            <app-async-dropdown
+                fieldId="favorites"
+                fieldLabel="Share With People"
+                [initialGroupFetch]="fetchFavorites"
+                [secondGroupFetch]="fetchPeople"
+                (selectedOptions)="addBulbUser($event)"
+                class=""
+            ></app-async-dropdown>
+
+            <app-async-dropdown
+                fieldId="groups"
+                fieldLabel="Share With Groups"
+                [initialGroupFetch]="fetchFavorites"
+                [secondGroupFetch]="fetchPeople"
+                (selectedOptions)="updateBulbGroups($event)"
+                class="block my-5"
+            ></app-async-dropdown>
+
+            <p-button 
+                label="Apply Share Settings"
+                icon="pi pi-check"
+                class="my-5"
+            ></p-button>
+        </section>
+
+    </form>
+</p-card>
+<pre>{{ shareSettings.value | json }}</pre>
+
+<br>
+<br>
+<br>
+<br>
+<br>
