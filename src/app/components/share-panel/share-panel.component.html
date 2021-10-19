@@ -1,7 +1,10 @@
 <p-overlayPanel #op>
     <ng-template pTemplate>
-        <app-toggle-form></app-toggle-form> 
+        <article class="relative">
+            <button pButton class="absolute right-0" label="Close" (click)="op.hide()"></button>
+            <app-toggle-form></app-toggle-form> 
+        </article>
     </ng-template>
 </p-overlayPanel>
 
-<button type="text" pButton label="Basic" (click)="op.toggle($event)"></button>
+<button pButton class="flex ml-auto" label="Basic" (click)="op.toggle($event)"></button>
