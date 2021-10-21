@@ -1,7 +1,9 @@
-<p-overlayPanel #op>
+<p-overlayPanel #op styleClass="p-overlaypanel--dark">
     <ng-template pTemplate>
         <article class="relative">
-            <button pButton class="absolute right-0" label="Close" (click)="op.hide()"></button>
+            <button class="absolute right-0" (click)="op.hide()">
+                <fa-icon [icon]="closeIcon"></fa-icon>
+            </button>
             <app-toggle-form></app-toggle-form> 
         </article>
     </ng-template>

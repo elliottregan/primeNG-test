@@ -16,6 +16,7 @@ import { AppComponent } from './app.component';
 import { AsyncDropdownComponent } from './components/async-dropdown/async-dropdown.component';
 import { ToggleFormComponent } from './components/toggle-form/toggle-form.component';
 import { SharePanelComponent } from './components/share-panel/share-panel.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { SharePanelComponent } from './components/share-panel/share-panel.compon
     MultiSelectModule,
     OverlayPanelModule,
     SelectButtonModule,
+    FontAwesomeModule,
   ],
   providers: [
     HttpService,

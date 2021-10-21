@@ -17,5 +17,8 @@ build:
 develop:
 	make run c="npm run start"
 
+analyze:
+	make run c="npm run start:analyze"
+
 test:
 	make run c="npm run test"
