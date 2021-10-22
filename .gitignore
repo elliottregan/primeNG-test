@@ -44,3 +44,6 @@ testem.log
 .DS_Store
 Thumbs.db
 .npmrc
+
+# Generated files from svg-to-ts
+src/app/svg/*.ts

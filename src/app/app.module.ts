@@ -17,6 +17,10 @@ import { AsyncDropdownComponent } from './components/async-dropdown/async-dropdo
 import { ToggleFormComponent } from './components/toggle-form/toggle-form.component';
 import { SharePanelComponent } from './components/share-panel/share-panel.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SvgIconsModule } from '@ngneat/svg-icon';
+
+import { faAcorn as faAbacus } from './svg/fontawesome/fontawesome-icon.model'
+import { appAbacusIcon } from './svg/abacus'
 
 @NgModule({
   declarations: [
@@ -38,6 +42,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     OverlayPanelModule,
     SelectButtonModule,
     FontAwesomeModule,
+    SvgIconsModule.forRoot({
+      icons: [
+        // appAbacusIcon,
+        faAbacus,
+      ],
+    }),
   ],
   providers: [
     HttpService,
