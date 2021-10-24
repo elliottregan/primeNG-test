@@ -2,9 +2,7 @@
     <ng-template pTemplate>
         <article class="relative">
             <button class="absolute right-0" (click)="op.hide()">
-                <fa-icon [icon]="closeIcon"></fa-icon>
-                <svg-icon key="abacus"></svg-icon>
-                <svg-icon key="acorn"></svg-icon>
+                <svg-icon [key]="closeIcon"></svg-icon>
             </button>
             <app-toggle-form></app-toggle-form> 
         </article>

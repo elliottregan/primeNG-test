@@ -1,17 +1,13 @@
-$overlaypanelBg: #000;
+$overlayContentBg: #000;
+$overlayContentText: #fff;
 
 
-.p-overlaypanel-content {
-    background-color: #000;
-}
+.p-overlaypanel--dark {
+    background-color: $overlayContentBg;
+    color: $overlayContentText;
 
-:host {
-    background-color: $overlaypanelBg;
-    .p-overlaypanel--dark {
-        background-color: $overlaypanelBg;
-    }
-    
-    .p-overlaypanel-content {
-        background-color: #000;
+    &::after,
+    &::before {
+        border-bottom-color: $overlayContentBg;
     }
 }

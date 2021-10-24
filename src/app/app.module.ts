@@ -16,11 +16,11 @@ import { AppComponent } from './app.component';
 import { AsyncDropdownComponent } from './components/async-dropdown/async-dropdown.component';
 import { ToggleFormComponent } from './components/toggle-form/toggle-form.component';
 import { SharePanelComponent } from './components/share-panel/share-panel.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SvgIconsModule } from '@ngneat/svg-icon';
 
-import { faAcorn as faAbacus } from './svg/fontawesome/fontawesome-icon.model'
-import { appAbacusIcon } from './svg/abacus'
+import * as FontAwesomeIconLibrary from './svg/fontawesome-icon.model'
+
+console.log(...Object.values(FontAwesomeIconLibrary));
 
 @NgModule({
   declarations: [
@@ -41,11 +41,10 @@ import { appAbacusIcon } from './svg/abacus'
     MultiSelectModule,
     OverlayPanelModule,
     SelectButtonModule,
-    FontAwesomeModule,
     SvgIconsModule.forRoot({
       icons: [
         // appAbacusIcon,
-        faAbacus,
+        ...Object.values(FontAwesomeIconLibrary),
       ],
     }),
   ],
