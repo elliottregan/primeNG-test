@@ -46,4 +46,4 @@ Thumbs.db
 .npmrc
 
 # Generated files from svg-to-ts
-src/app/svg/*.ts
+src/app/svg/**/*.ts

@@ -18,9 +18,7 @@ import { ToggleFormComponent } from './components/toggle-form/toggle-form.compon
 import { SharePanelComponent } from './components/share-panel/share-panel.component';
 import { SvgIconsModule } from '@ngneat/svg-icon';
 
-import * as FontAwesomeIconLibrary from './svg/fontawesome-icon.model'
-
-console.log(...Object.values(FontAwesomeIconLibrary));
+import { acornIcon } from './svg/fontawesome/regular/acorn'
 
 @NgModule({
   declarations: [
@@ -43,8 +41,7 @@ console.log(...Object.values(FontAwesomeIconLibrary));
     SelectButtonModule,
     SvgIconsModule.forRoot({
       icons: [
-        // appAbacusIcon,
-        ...Object.values(FontAwesomeIconLibrary),
+        acornIcon,
       ],
     }),
   ],

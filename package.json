@@ -9,9 +9,7 @@
     "build:stats": "ng build --stats-json",
     "watch": "ng build --watch --configuration development",
     "analyze": "webpack-bundle-analyzer dist/primeNG-test/stats.json --host 0.0.0.0 --port 4200",
-    "test": "ng test",
-    "generate-icons-2": "svg-to-ts",
-    "generate-icons": "svg-generator"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
@@ -47,40 +45,9 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
-    "svg-to-ts": "^7.0.0",
     "typescript": "~4.3.5"
   },
   "optionalDependencies": {
     "webpack-bundle-analyzer": "^4.5.0"
-  },
-  "svgGenerator": {
-    "outputPath": "./src/app/svg",
-    "prefix": "fa",
-    "srcPath": "./node_modules/@fortawesome/fontawesome-pro/svgs/regular/*.svg",
-    "svgoConfig": {
-      "plugins": [
-        {
-          "removeDimensions": true,
-          "cleanupAttrs": true
-        }
-      ]
-    }
-  },
-  "svg-to-ts": {
-    "conversionType": "constants",
-    "srcFiles": [
-      "./node_modules/@fortawesome/fontawesome-pro/svgs/regular/*.svg"
-    ],
-    "outputDirectory": "./src/app/svg",
-    "interfaceName": "FontAwesomeIcon",
-    "typeName": "fontAwesomeIcon",
-    "prefix": "fa",
-    "svgoConfig": {
-      "plugins": [
-        "cleanupAttrs"
-      ]
-    },
-    "fileName": "fontawesome-icon.model",
-    "compileSources": true
   }
 }
