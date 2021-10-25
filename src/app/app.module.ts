@@ -10,15 +10,14 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 
+import { SVGIconModule } from './modules/svg-icon/svg-icon.module'
+
 import { HttpService } from './services/http.service';
 import { AppComponent } from './app.component';
 
 import { AsyncDropdownComponent } from './components/async-dropdown/async-dropdown.component';
 import { ToggleFormComponent } from './components/toggle-form/toggle-form.component';
 import { SharePanelComponent } from './components/share-panel/share-panel.component';
-import { SvgIconsModule } from '@ngneat/svg-icon';
-
-import { acornIcon } from './svg/fontawesome/regular/acorn'
 
 @NgModule({
   declarations: [
@@ -32,6 +31,7 @@ import { acornIcon } from './svg/fontawesome/regular/acorn'
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    SVGIconModule,
 
     // PrimeNG
     ButtonModule,
@@ -39,11 +39,6 @@ import { acornIcon } from './svg/fontawesome/regular/acorn'
     MultiSelectModule,
     OverlayPanelModule,
     SelectButtonModule,
-    SvgIconsModule.forRoot({
-      icons: [
-        acornIcon,
-      ],
-    }),
   ],
   providers: [
     HttpService,

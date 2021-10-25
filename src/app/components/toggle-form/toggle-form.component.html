@@ -10,11 +10,8 @@
             class="block"
         >
             <ng-template let-option>
-                
-                <span class="p-button-label">
-                    <i [class]="'p-button-icon ' + option.icon"></i>
-                    {{ option.name }}
-                </span>
+                <i [class]="'p-button-icon p-button-icon-left ' + option.icon"></i>
+                <span class="p-button-label">{{ option.name }}</span>
             </ng-template>
         </p-selectButton>
     </div>
