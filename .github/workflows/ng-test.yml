@@ -1,0 +1,31 @@
+name: Node.js CI
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - uses: actions/cache@v2
+        id: cache-node-modules
+        with:
+          path: bulb-ngclient/node_modules
+          key: node-modules-${{ hashFiles('bulb-ngclient/package-lock.json') }}
+
+      - run: npm i
+        if: steps.cache-node-modules.outputs.cache-hit != 'true' && contains(matrix.command, 'npm run test')
+
+      - run: npm run test
