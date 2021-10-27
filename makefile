@@ -5,6 +5,7 @@ build-env:
 
 run: build-env
 	docker run --rm -it \
+	--env-file .env \
 	--name primeng-test \
 	-p 4200:4200 \
 	-v `pwd`:/app \
