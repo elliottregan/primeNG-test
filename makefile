@@ -1,11 +1,20 @@
+ifneq (,$(wildcard ./.env))
+    include .env
+    export
+endif
+
+
 all: run
 
 build-env:
-	docker build -t primeng-test .
+	docker build \
+	--build-arg FONTAWESOME_NPM_AUTH_TOKEN=${FONTAWESOME_NPM_AUTH_TOKEN} \
+	-t primeng-test .
 
 run: build-env
-	docker run --rm -it \
-	--env-file .env \
+	docker run \
+	--env-file=./.env \
+	--rm -it \
 	--name primeng-test \
 	-p 4200:4200 \
 	-v `pwd`:/app \
