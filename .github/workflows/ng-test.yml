@@ -29,6 +29,5 @@ jobs:
         run: |
           npm config set '//npm.fontawesome.com/:_authToken' "${{ secrets.FONTAWESOME_NPM_AUTH_TOKEN }}"
           npm i
-        if: steps.cache-node-modules.outputs.cache-hit != 'true' && contains(matrix.command, 'npm run test')
 
       - run: npm run test
