@@ -7,6 +7,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      FONTAWESOME_NPM_AUTH_TOKEN=${{ secrets.FONTAWESOME_NPM_AUTH_TOKEN }}
 
     strategy:
       matrix:
@@ -29,8 +31,6 @@ jobs:
       - name: Install Dependencies
         run: |
           npm i
-        env: 
-          FONTAWESOME_NPM_AUTH_TOKEN=${{ secrets.FONTAWESOME_NPM_AUTH_TOKEN }}
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
 
       - run: npm run test
