@@ -4,7 +4,6 @@
  * Copyright 2020, Bulb Inc.  For more information, please email contact@hellobulb.com.
  */
 
-import { resolve } from 'path';
 import { Configuration } from 'webpack';
 // @ts-ignore
 import { SvgGeneratorWebpackPlugin } from '@ngneat/svg-generator/webpack-plugin';
