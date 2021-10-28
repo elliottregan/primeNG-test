@@ -1,3 +1,4 @@
+[![NG Tests](https://github.com/elliottregan/primeNG-test/actions/workflows/ng-test.yml/badge.svg)](https://github.com/elliottregan/primeNG-test/actions/workflows/ng-test.yml)
 # PrimeNGTest
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.8.
