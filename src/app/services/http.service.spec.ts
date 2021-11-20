@@ -11,6 +11,6 @@ describe('HttpService', () => {
   });
 
   it('should be created', () => {
-    expect(service).not.toBeTruthy();
+    expect(service).toBeTruthy();
   });
 });
