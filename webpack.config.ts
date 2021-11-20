@@ -12,8 +12,9 @@ import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
 export default {
   plugins: [
     new SvgGeneratorWebpackPlugin({
-      srcPath: './node_modules/@fortawesome/fontawesome-pro/svgs',
-      outputPath: './src/app/svg/fontawesome',
+      srcPath: './node_modules/@fortawesome/fontawesome-pro/svgs/regular',
+      outputPath: './src/app/svg/fontawesome/regular',
+      prefix: 'fa',
       svgoConfig: {
         plugins: [
           "removeDimensions"
