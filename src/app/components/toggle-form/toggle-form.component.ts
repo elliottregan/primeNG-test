@@ -15,6 +15,8 @@ interface shareSettings extends FormGroup {
   }
 }
 
+const change = true;
+
 enum PrivacyLevel {
   PRIVATE = 'Private',
   CUSTOM = 'Custom',
