@@ -3,7 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms'
 import { Subscription, from } from 'rxjs';
 import { distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { SvgIconRegistry } from '@ngneat/svg-icon';
-import { lockIcon } from 'IconLibrary/fontawesome/regular/lock';
+import { faLockIcon } from 'IconLibrary/fontawesome/regular/lock';
 
 import { HttpService } from '../../services/http.service';
 
@@ -69,7 +69,7 @@ export class ToggleFormComponent implements OnInit, OnDestroy {
       private HttpService: HttpService,
       private iconRegistry: SvgIconRegistry,
   ) {
-    this.iconRegistry.register([lockIcon]);
+    this.iconRegistry.register([faLockIcon]);
     this.fetchFavorites = (...args) => this.HttpService.fetchParty(...args);
     this.fetchPeople = (...args) => this.HttpService.fetchPokemon_details(...args);
   }
