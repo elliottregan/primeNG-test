@@ -90,3 +90,5 @@ jobs:
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
 
       - uses: reviewdog/action-eslint@v1
+        with:
+          filter_mode: 'file'
