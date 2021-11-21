@@ -2,7 +2,7 @@ name: NG Tests
 
 on:
   pull_request:
-  push:
+  push: ['master']
 
 jobs:
   test:
