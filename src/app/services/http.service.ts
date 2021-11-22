@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { 
+import {
   HttpResponse,
   HttpProgressEvent,
   HttpHeaderResponse,
@@ -15,38 +15,36 @@ export interface Pokemon {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HttpService {
-
   savePrivacySettings(shareSettings:any):
-    Observable<HttpSentEvent | HttpHeaderResponse | HttpProgressEvent | HttpResponse<any> | HttpUserEvent<any>> {
-
+  Observable<HttpSentEvent | HttpHeaderResponse | HttpProgressEvent | HttpResponse<any> | HttpUserEvent<any>> {
     console.log('HttpService', shareSettings);
 
-    return new Observable(observer => {
-      observer.next(new HttpResponse<any>({body: {}, status: 200}));
+    return new Observable((observer) => {
+      observer.next(new HttpResponse<any>({ body: {}, status: 200 }));
       observer.complete();
     });
   }
 
   async fetchGraphQL(query:string, variables:any, operationName:any) {
     const result = await fetch(
-      "https://beta.pokeapi.co/graphql/v1beta",
+      'https://beta.pokeapi.co/graphql/v1beta',
       {
-        method: "POST",
+        method: 'POST',
         body: JSON.stringify({
-          query: query,
-          variables: variables,
-          operationName: operationName
-        })
-      }
-    )
+          query,
+          variables,
+          operationName,
+        }),
+      },
+    );
 
-    return await result.json()
+    return result.json();
   }
 
-  async fetchParty(id:Number|Array<Number> = 10): Promise<Array<Pokemon>> {
+  async fetchParty(id:Number | Array<Number> = 10): Promise<Array<Pokemon>> {
     const query = `
       query pokemon_details($id: [Int!]) {
         species: pokemon_v2_pokemonspecies(where: {id: {_in: $id}}) {
@@ -54,17 +52,17 @@ export class HttpService {
           name
         }
       }
-    `
+    `;
 
     const { data } = await this.fetchGraphQL(
       query,
-      {"id": id},
-      "pokemon_details"
-    )
+      { id },
+      'pokemon_details',
+    );
     return data.species.map(addImage);
   }
 
-  async fetchPokemon_details(name="starmie"): Promise<Array<Pokemon>> {
+  async fetchPokemon_details(name = 'starmie'): Promise<Array<Pokemon>> {
     const query = `
       query pokemon_details($name: String) {
         species: pokemon_v2_pokemonspecies(where: {name: {_iregex: $name}}) {
@@ -72,17 +70,15 @@ export class HttpService {
           id
         }
       }
-    `
+    `;
 
     const { data } = await this.fetchGraphQL(
       query,
-      {"name": name},
-      "pokemon_details"
-    )
+      { name },
+      'pokemon_details',
+    );
     return data.species.map(addImage);
   }
-
 }
 
-const addImage = (p: { name: string; id: number; }): Pokemon => 
-  Object.assign(p, {image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${p.id}.png`})
+const addImage = (p: { name: string; id: number; }): Pokemon => Object.assign(p, { image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${p.id}.png` });

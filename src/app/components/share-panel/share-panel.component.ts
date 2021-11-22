@@ -13,5 +13,4 @@ export class SharePanelComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
