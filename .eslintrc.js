@@ -27,6 +27,8 @@ module.exports = {
       },
       extends: [
         'eslint:recommended',
+        'airbnb-base',
+        'airbnb-typescript/base',
         'plugin:@angular-eslint/recommended',
         'plugin:@angular-eslint/template/process-inline-templates',
       ],

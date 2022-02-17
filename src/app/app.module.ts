@@ -10,7 +10,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 
-import { SVGIconModule } from './modules/svg-icon/svg-icon.module'
+import { SVGIconModule } from './modules/svg-icon/svg-icon.module';
 
 import { HttpService } from './services/http.service';
 import { AppComponent } from './app.component';
@@ -43,6 +43,6 @@ import { SharePanelComponent } from './components/share-panel/share-panel.compon
   providers: [
     HttpService,
   ],
-  bootstrap: [ AppComponent ],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

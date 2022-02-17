@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { SvgIconsModule, SvgIconComponent } from '@ngneat/svg-icon';
 
-import { faAcornIcon as faRegularAcorn } from 'IconLibrary/fontawesome/regular/acorn'
-faRegularAcorn.name = 'fa-regular-acorn'
+import { faAcornIcon as faRegularAcorn } from 'IconLibrary/fontawesome/regular/acorn';
+
+faRegularAcorn.name = 'fa-regular-acorn';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,6 @@ faRegularAcorn.name = 'fa-regular-acorn'
   ],
   exports: [
     SvgIconComponent,
-  ]
+  ],
 })
 export class SVGIconModule { }

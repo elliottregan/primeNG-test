@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SVGIconModule } from '../../modules/svg-icon/svg-icon.module'
+import { SVGIconModule } from '../../modules/svg-icon/svg-icon.module';
 
 import { ToggleFormComponent } from './toggle-form.component';
 
@@ -9,10 +9,10 @@ describe('ToggleFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ SVGIconModule ],
-      declarations: [ ToggleFormComponent ],
+      imports: [SVGIconModule],
+      declarations: [ToggleFormComponent],
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

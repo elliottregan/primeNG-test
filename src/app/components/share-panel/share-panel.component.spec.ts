@@ -8,9 +8,9 @@ describe('SharePanelComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SharePanelComponent ]
+      declarations: [SharePanelComponent],
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms'
+import { FormGroup, FormControl } from '@angular/forms';
 import { Subscription, from } from 'rxjs';
 import { distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { SvgIconRegistry } from '@ngneat/svg-icon';
@@ -14,6 +14,8 @@ interface shareSettings extends FormGroup {
     bulbGroups: FormControl,
   }
 }
+
+const change = true;
 
 enum PrivacyLevel {
   PRIVATE = 'Private',
@@ -30,19 +32,18 @@ enum PrivacyIcons {
 @Component({
   selector: 'app-toggle-form',
   templateUrl: './toggle-form.component.html',
-  styleUrls: ['./toggle-form.component.scss']
+  styleUrls: ['./toggle-form.component.scss'],
 })
 export class ToggleFormComponent implements OnInit, OnDestroy {
-
   private ngUnsubscribe: Subscription = new Subscription();
 
-  public privacyOptions = Object.keys(PrivacyLevel).map((v, i)=> ({
+  public privacyOptions = Object.keys(PrivacyLevel).map((v, i) => ({
     code: v,
     name: Object.values(PrivacyLevel)[i],
-    icon: Object.values(PrivacyIcons)[i]
+    icon: Object.values(PrivacyIcons)[i],
   }));
 
-/**
+  /**
  *     id: string,
     private: boolean, // published or not
     privateShareLink: string, // always there, no need to create it
@@ -66,8 +67,8 @@ export class ToggleFormComponent implements OnInit, OnDestroy {
   fetchPeople: (name?: string) => Promise<any[]>;
 
   constructor(
-      private HttpService: HttpService,
-      private iconRegistry: SvgIconRegistry,
+    private HttpService: HttpService,
+    private iconRegistry: SvgIconRegistry,
   ) {
     this.iconRegistry.register([faLockIcon]);
     this.fetchFavorites = (...args) => this.HttpService.fetchParty(...args);
@@ -77,21 +78,21 @@ export class ToggleFormComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.onChanges();
   }
-  
+
   private onChanges(): void {
     this.ngUnsubscribe.add(
       this.shareSettings.get('privacyLevel')?.valueChanges
         .pipe(
           distinctUntilChanged(),
-          switchMap(async value => {
+          switchMap(async (value) => {
             console.log('switchMap', value, this.shareSettings.get('privacyLevel')?.value);
             const tempFormData = this.shareSettings.value;
             tempFormData.privacyLevel = value;
-            await this.savePermissions(tempFormData)
+            await this.savePermissions(tempFormData);
             // console.log(value, this.shareSettings.get('privacyLevel')?.value);
           }),
         )
-        .subscribe(async value => {
+        .subscribe(async (value) => {
           console.log('subscribe', value, this.shareSettings.get('privacyLevel')?.value);
         }),
     );
@@ -99,13 +100,13 @@ export class ToggleFormComponent implements OnInit, OnDestroy {
 
   public updateBulbUsers(options:any[]) {
     this.shareSettings.patchValue({
-      bulbUsers: options.map(option => option.id)
+      bulbUsers: options.map((option) => option.id),
     });
   }
 
   public updateBulbGroups(options:any[]) {
     this.shareSettings.patchValue({
-      bulbGroups: options.map(({ id })=> { id })
+      bulbGroups: options.map(({ id }) => { id; }),
     });
   }
 
@@ -116,7 +117,5 @@ export class ToggleFormComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void { // Don't forget to close possible memory leak
     this.ngUnsubscribe.unsubscribe();
-  } 
-
-
+  }
 }
