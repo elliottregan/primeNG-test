@@ -36,13 +36,13 @@ jobs:
 
       - run: npm run test -- --code-coverage
 
-      - uses: codecov/codecov-action@v3
-        with:
-          directory: ./coverage
-          flags: unittests # optional
-          name: codecov-umbrella # optional
-          fail_ci_if_error: true # optional (default = false)
-          verbose: true # optional (default = false)
+      # - uses: codecov/codecov-action@v3
+      #   with:
+      #     directory: ./coverage
+      #     flags: unittests # optional
+      #     name: codecov-umbrella # optional
+      #     fail_ci_if_error: true # optional (default = false)
+      #     verbose: true # optional (default = false)
 
       - name: Coveralls GitHub Action
         # You may pin to the exact commit or the version.
